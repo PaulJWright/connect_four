@@ -88,6 +88,7 @@ class ConnectFour:
         while True:
             current_player = self.players[current_player_index]
             # logger.info(f"Player {player_index}")
+            print("\n\n-----------------------------------------")
             print(f"Current Player: Player {current_player_index}")
 
             valid_turn = False
