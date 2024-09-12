@@ -72,10 +72,24 @@ class ConnectFour:
         print("Column is full. Choose another column.")
         return False
 
-    def check_for_end(self):
+    def check_for_end(self, counter):
         """ "
         check if win or stalemate
         """
+
+        # stalemate is when board is full
+
+        # Check horizontal win
+        for row in range(self.rows):
+            for col in range(self.columns - 3):
+                if np.all(self._grid[row, col : col + 4] == counter):
+                    return True
+
+        # Check vertical win
+        for col in range(self.columns):
+            for row in range(self.rows - 3):
+                if np.all(self._grid[row : row + 4, col] == counter):
+                    return True
         pass
 
     def play(self):
@@ -99,6 +113,10 @@ class ConnectFour:
                 )
 
             # check for end (win/stalemate)
+            if self.check_for_end(current_player.counter):
+                self.show_grid()
+                print(f"🎉 Player {current_player_index} Wins!")
+                break
 
             self.show_grid()
 
