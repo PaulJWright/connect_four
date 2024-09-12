@@ -49,7 +49,7 @@ class ConnectFour:
 
     def show_grid(self):
         """
-        display the board?
+        display the board
         """
         print("\n  " + "   ".join(str(i) for i in range(self.columns)))
         for row in self._grid:
@@ -73,11 +73,12 @@ class ConnectFour:
         return False
 
     def check_for_end(self, counter):
-        """ "
+        """
         check if win or stalemate
         """
 
-        # stalemate is when board is full
+        # !TODO stalemate is when board is full
+        # !TODO is there an algo that's optimised for the diagonal?
 
         # Check horizontal win
         for row in range(self.rows):
@@ -99,6 +100,9 @@ class ConnectFour:
         current_player_index = 0
         self.show_grid()  # show grid at beginning
 
+        # oaky, so we want to iterate through turns until the game ends
+        # so leave true, then for each turn, keep going until the move is valid
+        # and then break the while loop when the game ends
         while True:
             current_player = self.players[current_player_index]
             # logger.info(f"Player {player_index}")
@@ -117,6 +121,8 @@ class ConnectFour:
                 self.show_grid()
                 print(f"🎉 Player {current_player_index} Wins!")
                 break
+
+            # !TODO implement stalemate
 
             self.show_grid()
 
