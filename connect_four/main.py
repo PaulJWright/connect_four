@@ -82,16 +82,13 @@ class ConnectFour:
         """
         play the game
         """
-        player_index = 0
+        current_player_index = 0
         self.show_grid()  # show grid at beginning
 
         while True:
-            # display grid each time
-            self.show_grid()
-
-            current_player = self.players[player_index]
+            current_player = self.players[current_player_index]
             # logger.info(f"Player {player_index}")
-            print(f"Current Player: Player {player_index}")
+            print(f"Current Player: Player {current_player_index}")
 
             valid_turn = False
             while not valid_turn:
@@ -100,8 +97,11 @@ class ConnectFour:
                     current_player.counter,
                 )
 
+            # check for end (win/stalemate)
+
             self.show_grid()
-            break
+
+            current_player_index = 1 - current_player_index  # assumes two players
 
 
 class Player(ABC):
